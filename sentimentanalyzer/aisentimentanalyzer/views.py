@@ -14,8 +14,19 @@ class call_model(APIView):
             vector = AisentimentanalyzerConfig.vectorizer.transform([text])
             #predict based on vector
             prediction = AisentimentanalyzerConfig.model.predict(vector)[0]
+            #predict probabilities based on vector
+            probabilities = AisentimentanalyzerConfig.model.predict_proba(vector)
+            #Find the maximum probablity among the list
+            max_prob = max(probabilities[0])
             #build response
-            response = {'text sentiment': prediction}
+            response = {
+                'text': text,
+                'sentiment': prediction,
+                'probabilities': max_prob
+            }
 
             return JsonResponse(response)
+        else:
+            return JsonResponse({'error': 'Text parameter is missing'})
+
 
