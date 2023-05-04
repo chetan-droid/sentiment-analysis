@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpRequest
 
 from .apps import AisentimentanalyzerConfig
 from django.http import JsonResponse
@@ -25,8 +26,10 @@ class call_model(APIView):
                 'probabilities': max_prob
             }
 
+            # return JsonResponse(response)
+            # print(response, "L1")
             return JsonResponse(response)
         else:
-            return JsonResponse({'error': 'Text parameter is missing'})
+            return HttpRequest({'error': 'Text parameter is missing'})
 
 
