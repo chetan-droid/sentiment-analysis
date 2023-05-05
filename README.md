@@ -62,3 +62,5 @@ python manage.py runserver
 ```bash
 streamlit run quickstart.py
 ```
+
+### While running the web application, firstly you have to run "python manage.py runserver" in one terminal and in other terminal you have to run "streamlit run quickstart.py".
